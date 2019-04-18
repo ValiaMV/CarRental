@@ -14,10 +14,10 @@ namespace CarRentalApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private IUserManager _userManager;
-        public UserController(IUserManager userManager)
+        public UsersController(IUserManager userManager)
         {
             _userManager = userManager;
             Mapper.Reset();

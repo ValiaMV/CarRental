@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using AutoMapper;
+using CarRentalApp.Business.Mapping;
 
 namespace CarRentalApp
 {
@@ -32,7 +34,9 @@ namespace CarRentalApp
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICarManager, CarManager>();
             services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<IOrderManager, OrderManager>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

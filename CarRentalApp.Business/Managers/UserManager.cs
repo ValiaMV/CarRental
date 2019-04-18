@@ -14,16 +14,16 @@ namespace CarRentalApp.Business.Managers
 {
     public class UserManager : IUserManager
     {
-        private DataContext _context;
-        public UserManager(DataContext context)
+        private readonly DataContext _context;
+        private readonly IMapper _mapper;
+        public UserManager(DataContext context, IMapper mapper)
         {
             _context = context;
-            Mapper.Reset();
-            Mapper.Initialize(config => config.CreateMap<DomainUser, User>());
+            _mapper = mapper;
         }
         public async Task<IEnumerable<User>> ReadAll()
         {
-            var users = Mapper.Map<IEnumerable<DomainUser>, IEnumerable<User>>(await _context.Users.ToListAsync());
+            var users = _mapper.Map<IEnumerable<User>>(await _context.Users.ToListAsync());
             return users;
         }
     }

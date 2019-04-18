@@ -16,17 +16,17 @@ namespace CarRentalApp.Business.Managers
 {
     public class CarManager : ICarManager
     {
-        private DataContext _context;
-        public CarManager(DataContext context)
+        private readonly DataContext _context;
+        private readonly IMapper _mapper;
+        public CarManager(DataContext context, IMapper mapper)
         {
             _context = context;
-            Mapper.Reset();
-            Mapper.Initialize(config => config.CreateMap<DomainCar, Car>());
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<Car>> ReadAll()
         {
-            var cars = Mapper.Map<IEnumerable<DomainCar>, IEnumerable<Car>>(await _context.Cars.ToListAsync());
+            var cars = _mapper.Map<IEnumerable<Car>>(await _context.Cars.ToListAsync());
             return cars;
         }
     }
