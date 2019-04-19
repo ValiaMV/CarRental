@@ -13,5 +13,6 @@ namespace CarRentalApp.Models
         public string Class { get; set; }
         public int ManufactureYear { get; set; }
         public string RegistrationNumber { get; set; }
+        public OrderViewModel Order { get; set; }
     }
 }

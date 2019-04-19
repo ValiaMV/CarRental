@@ -11,5 +11,6 @@ namespace CarRentalApp.Data.Models
         public string SecondName { get; set; }
         public DateTime BirthDate { get; set; }
         public string LicenseNumber { get; set; }
+        public Order Order { get; set; }
     }
 }

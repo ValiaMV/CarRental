@@ -16,5 +16,7 @@ namespace CarRentalApp.Business.Interfaces
         Task<IEnumerable<Order>> FilterByBeginDate(DateTime date);
         Task<IEnumerable<Order>> FilterByEndDate(DateTime date);
         Task<IEnumerable<Order>> FilterByUserName(string name);
+        Task<IEnumerable<Order>> FilterByCarModel(string name);
+        Task<IEnumerable<Order>> FilterByCarVendor(string name);
     }
 }

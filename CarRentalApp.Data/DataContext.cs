@@ -18,5 +18,17 @@ namespace CarRentalApp.Data
         {
             base.OnConfiguring(optionsBuilder);
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>()
+                        .HasOne(order => order.Car)                         
+                        .WithOne(car => car.Order)
+                        .HasForeignKey<Order>(order => order.CarId);
+            modelBuilder.Entity<Order>()
+                        .HasOne(order => order.User)
+                        .WithOne(user => user.Order)
+                        .HasForeignKey<Order>(order => order.UserId);
+
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace CarRentalApp.Business.Models
         public string Class { get; set; }
         public int ManufactureYear { get; set; }
         public string RegistrationNumber { get; set; }
+        public Order Order { get; set; }
     }
 }
