@@ -1,0 +1,22 @@
+<h1>Список моделей</h1>
+<input type="button" value="Добавить" class="btn btn-default" (click)="add()" />
+<table *ngIf="tableMode; else create" class="table table-striped">
+    <thead>
+        <tr>
+            <td>Модель</td>
+            <td>Производитель</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of users">
+            <ng-template [ngIf]="users?.id != u.id" [ngIfElse]="edit">
+                <td>{{u?.firstName}}</td>
+                <td>{{u?.secondName}}</td>
+                <td>{{u?.licenseNumber}}</td>
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+ 

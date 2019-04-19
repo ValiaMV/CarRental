@@ -1,0 +1,20 @@
+<h1>Users</h1>
+<table *ngIf="tableMode; else create" class="table table-striped">
+    <thead>
+        <tr>
+            <td>First name</td>
+            <td>Last name</td>
+            <td>License number</td>
+            <td>Birthday</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of users">
+                <td>{{u?.firstName}}</td>
+                <td>{{u?.secondName}}</td>
+                <td>{{u?.licenseNumber}}</td>
+                <td>{{u?.birthDate}}</td>
+        </tr>
+    </tbody>
+</table>
+ 

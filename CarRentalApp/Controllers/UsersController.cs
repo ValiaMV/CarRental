@@ -17,18 +17,30 @@ namespace CarRentalApp.Controllers
     public class UsersController : ControllerBase
     {
         private IUserManager _userManager;
-        public UsersController(IUserManager userManager)
+        private readonly IMapper _mapper;
+
+        public UsersController(IUserManager userManager, IMapper _mapper)
         {
             _userManager = userManager;
-            Mapper.Reset();
-            Mapper.Initialize(config => config.CreateMap<User, UserViewModel>());
         }
         // GET: api/User
         [HttpGet]
         public async Task<IEnumerable<UserViewModel>> GetUsers()
         {
-            var users = Mapper.Map<IEnumerable<User>, IEnumerable<UserViewModel>>(await _userManager.ReadAll());
-            return users;
+            var users = await _userManager.ReadAll();
+            List<UserViewModel> usersView = new List<UserViewModel>();
+            foreach(var user in users)
+            {
+                usersView.Add(new UserViewModel
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    SecondName = user.SecondName,
+                    LicenseNumber = user.LicenseNumber,
+                    BirthDate = user.BirthDate.ToShortDateString()
+                });
+            }
+            return usersView;
         }
     }
 }
