@@ -37,7 +37,8 @@ namespace CarRentalApp.Business.Managers
 
         public async Task<IEnumerable<Order>> ReadAll()
         {
-            var orders = _mapper.Map<IEnumerable<Order>>(await _context.Orders.ToListAsync());
+            var ordersData = await _context.Orders.Include(ord => ord.Car).Include(ord => ord.User).ToListAsync();
+            var orders = _mapper.Map<IEnumerable<Order>>(ordersData);
             return orders;
         }
 
@@ -47,6 +48,7 @@ namespace CarRentalApp.Business.Managers
             if(order != null)
             {
                 _context.Entry(order).CurrentValues.SetValues(orderUpdate);
+                _context.SaveChanges();
             }
         }
 
@@ -54,7 +56,7 @@ namespace CarRentalApp.Business.Managers
         {
             if(date != DateTime.MinValue)
             {
-                var orders = from order in _context.Orders
+                var orders = from order in _context.Orders.Include(ord => ord.Car).Include(ord => ord.User)
                              where order.BeginDate == date
                              select order;
                 return _mapper.Map<IEnumerable<Order>>(await orders.ToListAsync());
@@ -66,7 +68,7 @@ namespace CarRentalApp.Business.Managers
         {
             if (date != DateTime.MinValue)
             {
-                var orders = from order in _context.Orders
+                var orders = from order in _context.Orders.Include(ord => ord.Car).Include(ord => ord.User)
                              where order.EndDate == date
                              select order;
                 return _mapper.Map<IEnumerable<Order>>(await orders.ToListAsync());
@@ -78,7 +80,7 @@ namespace CarRentalApp.Business.Managers
         {
             if (name != null)
             {
-                var orders = from order in _context.Orders
+                var orders = from order in _context.Orders.Include(ord => ord.Car).Include(ord => ord.User)
                              where order.User.FirstName == name
                              select order;
                 return _mapper.Map<IEnumerable<Order>>(await orders.ToListAsync());
@@ -89,7 +91,7 @@ namespace CarRentalApp.Business.Managers
         {
             if (model != null)
             {
-                var orders = from order in _context.Orders
+                var orders = from order in _context.Orders.Include(ord => ord.Car).Include(ord => ord.User)
                              where order.Car.Model == model
                              select order;
                 return _mapper.Map<IEnumerable<Order>>(await orders.ToListAsync());
@@ -100,7 +102,7 @@ namespace CarRentalApp.Business.Managers
         {
             if (vendor != null)
             {
-                var orders = from order in _context.Orders
+                var orders = from order in _context.Orders.Include(ord => ord.Car).Include(ord => ord.User)
                              where order.Car.Vendor == vendor
                              select order;
                 return _mapper.Map<IEnumerable<Order>>(await orders.ToListAsync());

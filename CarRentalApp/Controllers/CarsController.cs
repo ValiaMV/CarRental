@@ -16,17 +16,18 @@ namespace CarRentalApp.Controllers
     public class CarsController : ControllerBase
     {
         private ICarManager _carManager;
-        public CarsController(ICarManager carManager)
+        private readonly IMapper _mapper;
+
+        public CarsController(ICarManager carManager, IMapper mapper)
         {
             _carManager = carManager;
-            Mapper.Reset();
-            Mapper.Initialize(config => config.CreateMap<Car, CarViewModel>());
+            _mapper = mapper;
         }
         // GET api/values
         [HttpGet]
         public async Task<IEnumerable<CarViewModel>> GetCars()
         {
-            var cars = Mapper.Map<IEnumerable<Car>, IEnumerable<CarViewModel>>(await _carManager.ReadAll());
+            var cars = _mapper.Map<IEnumerable<CarViewModel>>(await _carManager.ReadAll());
             return cars;
         }
     }

@@ -8,6 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\cars\car.ts" />
+    <None Remove="ClientApp\app\components\cars\cars.component.ts" />
+    <None Remove="ClientApp\app\components\menu\menu.component.ts" />
+    <None Remove="ClientApp\app\components\orders\order-create.component.ts" />
+    <None Remove="ClientApp\app\components\orders\order-edit.component.ts" />
+    <None Remove="ClientApp\app\components\orders\order-form.component.ts" />
+    <None Remove="ClientApp\app\components\orders\order-list.component.ts" />
+    <None Remove="ClientApp\app\components\orders\order.ts" />
+    <None Remove="ClientApp\app\components\search\search.component.ts" />
+    <None Remove="ClientApp\app\components\users\users.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
@@ -15,6 +28,19 @@
   <ItemGroup>
     <ProjectReference Include="..\CarRentalApp.Business\CarRentalApp.Business.csproj" />
     <ProjectReference Include="..\CarRentalApp.Data\CarRentalApp.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\cars\car.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\cars\cars.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\menu\menu.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\orders\order-create.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\orders\order-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\orders\order-form.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\orders\order-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\orders\order.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\search\search.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\users\users.component.ts" />
   </ItemGroup>
 
 </Project>

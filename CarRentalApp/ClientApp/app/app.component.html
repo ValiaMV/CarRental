@@ -1,20 +1,19 @@
-<h1>Users</h1>
-<table *ngIf="tableMode; else create" class="table table-striped">
-    <thead>
-        <tr>
-            <td>First name</td>
-            <td>Last name</td>
-            <td>License number</td>
-            <td>Birthday</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let u of users">
-                <td>{{u?.firstName}}</td>
-                <td>{{u?.secondName}}</td>
-                <td>{{u?.licenseNumber}}</td>
-                <td>{{u?.birthDate}}</td>
-        </tr>
-    </tbody>
-</table>
- 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['orders']">Car Rental</a>
+        <ul class="nav navbar-nav" routerLinkActive="active">
+            <li class="nav-item">
+                <a [routerLink]="['users']" class="nav-link">Users</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLink]="['cars']" class="nav-link">Cars</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLink]="['orders']" class="nav-link">Orders</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container body-content">
+    <router-outlet></router-outlet>
+</div>

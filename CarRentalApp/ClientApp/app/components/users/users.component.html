@@ -1,0 +1,29 @@
+﻿<div class="container" style="margin-top:15px">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Orders</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Users</li>
+            </ol>
+        </nav>
+    <div *ngIf="loaded">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>First name</td>
+                    <td>Last name</td>
+                    <td>License number</td>
+                    <td>Birthday</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.licenseNumber}}</td>
+                    <td>{{user.birthDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

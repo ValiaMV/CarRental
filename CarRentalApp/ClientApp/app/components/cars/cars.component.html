@@ -1,0 +1,30 @@
+﻿<div class="container" style="margin-top:15px">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Orders</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cars</li>
+        </ol>
+    </nav>
+    <div *ngIf="loaded">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Vendor</td>
+                    <td>Model</td>
+                    <td>Class</td>
+                    <td>Manufacture year</td>
+                    <td>Registration number</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let car of cars">
+                    <td>{{car.vendor}}</td>
+                    <td>{{car.model}}</td>
+                    <td>{{car.type}}</td>
+                    <td>{{car.manufactureYear}}</td>
+                    <td>{{car.registrationNumber}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

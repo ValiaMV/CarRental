@@ -22,12 +22,12 @@ namespace CarRentalApp.Data
         {
             modelBuilder.Entity<Order>()
                         .HasOne(order => order.Car)                         
-                        .WithOne(car => car.Order)
-                        .HasForeignKey<Order>(order => order.CarId);
+                        .WithMany(car => car.Orders)
+                        .HasForeignKey(order => order.CarId);
             modelBuilder.Entity<Order>()
                         .HasOne(order => order.User)
-                        .WithOne(user => user.Order)
-                        .HasForeignKey<Order>(order => order.UserId);
+                        .WithMany(user => user.Orders)
+                        .HasForeignKey(order => order.UserId);
 
         }
     }

@@ -18,6 +18,7 @@ using AutoMapper;
 using CarRentalApp.Business.Mapping;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace CarRentalApp
 {
@@ -37,7 +38,8 @@ namespace CarRentalApp
             services.AddScoped<ICarManager, CarManager>();
             services.AddScoped<IUserManager, UserManager>();
             services.AddScoped<IOrderManager, OrderManager>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); ;
             services.AddAutoMapper();
         }
 
@@ -60,7 +62,7 @@ namespace CarRentalApp
             }
 
             app.UseHttpsRedirection();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc();
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
@@ -74,6 +76,11 @@ namespace CarRentalApp
                     context.Response.StatusCode = 200;
                     await next();
                 }
+            });
+            app.Run(async (context) =>
+            {
+                context.Response.ContentType = "text/html";
+                await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
             });
         }
     }

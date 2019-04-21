@@ -1,0 +1,23 @@
+﻿<div>
+    <div class="row">
+        <div class="col" *ngIf="getType(type) != 'date'">
+            <input type="text" [(ngModel)]="key" class="form-control">
+        </div>
+        <div class="col" *ngIf="getType(type) == 'date'">
+            <input type="date" [(ngModel)]="key" class="form-control">
+        </div>
+            <div class="col">
+                <select [(ngModel)]="type" class="form-control">
+                    <option value="start"> Start date </option>
+                    <option value="end"> End date </option>
+                    <option value="vendor"> Car vendor </option>
+                    <option value="model"> Car model </option>
+                    <option value="name"> User name </option>
+                </select>
+            </div>
+            <div class="col">
+                <button (click)="search()" class="btn btn-light" style="margin-right:15px">Search</button>
+                <button (click)="reset()" class="btn btn-light">Reset</button>
+            </div>
+        </div>
+    </div>

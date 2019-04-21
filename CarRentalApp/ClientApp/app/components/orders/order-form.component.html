@@ -1,0 +1,28 @@
+﻿<div class="form-group">
+    <label>Car</label>
+    <select [(ngModel)]="order.carId" class="form-control" >
+        <option *ngFor="let car of cars" [value]="car.id">
+            {{ car.registrationNumber }}
+        </option>
+    </select>
+</div>
+<div class="form-group">
+    <label>User</label>
+    <select [(ngModel)]="order.userId" class="form-control">
+        <option *ngFor="let user of users" [value]="user.id">
+            {{ user.firstName }} {{ user.lastName }}
+        </option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Start date</label>
+    <input type="date" [ngModel]="order.beginDate | date:'yyyy-MM-dd'" (ngModelChange)="order.beginDate = $event" class="form-control" />
+</div>
+<div class="form-group">
+    <label>End date</label>
+    <input type="date" [ngModel]="order.endDate | date:'yyyy-MM-dd'" (ngModelChange)="order.endDate = $event" class="form-control" />
+</div>
+<div class="form-group">
+    <label>Comment</label>
+    <input type="text" [(ngModel)]="order.comment" class="form-control" />
+</div>

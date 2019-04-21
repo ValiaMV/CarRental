@@ -4,14 +4,16 @@ using CarRentalApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarRentalApp.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190420150232_RenameFields")]
+    partial class RenameFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,9 +60,11 @@ namespace CarRentalApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarId");
+                    b.HasIndex("CarId")
+                        .IsUnique();
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Orders");
                 });
@@ -87,13 +91,13 @@ namespace CarRentalApp.Data.Migrations
             modelBuilder.Entity("CarRentalApp.Data.Models.Order", b =>
                 {
                     b.HasOne("CarRentalApp.Data.Models.Car", "Car")
-                        .WithMany("Orders")
-                        .HasForeignKey("CarId")
+                        .WithOne("Order")
+                        .HasForeignKey("CarRentalApp.Data.Models.Order", "CarId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CarRentalApp.Data.Models.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
+                        .WithOne("Order")
+                        .HasForeignKey("CarRentalApp.Data.Models.Order", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

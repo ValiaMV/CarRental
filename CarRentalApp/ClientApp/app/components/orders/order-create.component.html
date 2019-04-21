@@ -1,0 +1,13 @@
+﻿<div class="container" style="margin-top:15px">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Orders</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add order</li>
+        </ol>
+    </nav>
+    <order-form [(order)]="order"></order-form>
+    <div class="form-group">
+        <input type="button" value="Save" (click)="save()" class="btn btn-success" />
+        <a routerLink="/" class="btn btn-light">Cancel</a>
+    </div>
+</div>

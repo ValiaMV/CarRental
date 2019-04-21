@@ -8,9 +8,9 @@ namespace CarRentalApp.Data.Models
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
-        public string SecondName { get; set; }
+        public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
         public string LicenseNumber { get; set; }
-        public Order Order { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

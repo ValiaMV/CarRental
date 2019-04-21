@@ -35,7 +35,7 @@ namespace CarRentalApp.Controllers
                 {
                     Id = user.Id,
                     FirstName = user.FirstName,
-                    SecondName = user.SecondName,
+                    LastName = user.LastName,
                     LicenseNumber = user.LicenseNumber,
                     BirthDate = user.BirthDate.ToShortDateString()
                 });

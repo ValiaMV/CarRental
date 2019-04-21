@@ -1,0 +1,33 @@
+﻿    <div class="container" style="margin-top:15px">
+        <search [(orders)]="orders" (filtered)="onFilter($event)"></search>
+        <div class="row row-offcanvas row-offcanvas-right" style="margin-top:15px">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>User</td>
+                        <td>Car</td>
+                        <td>Start date</td>
+                        <td>End date</td>
+                        <td>Comment</td>
+                        <td>Operations</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ord of orders">
+                        <td>{{ord.user.firstName}} {{ord.user.lastName}}</td>
+                        <td>{{ord.car.registrationNumber}}</td>
+                        <td>{{ord.beginDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{ord.endDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{ord.comment}}</td>
+                        <td>
+                            <a [routerLink]="['edit', ord.id]" class="btn btn-sm btn-light" style="margin-right:15px">Edit</a>
+                            <button (click)="delete(ord.id)" class="btn btn-sm btn-light">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <a [routerLink]="['create']" class="btn btn-sm btn-light">Add</a>
+            </div>
+        </div>
+    </div>
