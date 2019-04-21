@@ -82,6 +82,7 @@ namespace CarRentalApp
                 context.Response.ContentType = "text/html";
                 await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
             });
+
         }
     }
 }

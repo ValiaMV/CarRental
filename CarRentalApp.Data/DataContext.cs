@@ -12,7 +12,7 @@ namespace CarRentalApp.Data
 
         public DataContext(DbContextOptions options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

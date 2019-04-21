@@ -1,0 +1,45 @@
+
+CREATE DATABASE CarRental;
+
+CREATE TABLE [dbo].[Cars] (
+    [Id]                 INT            IDENTITY (1, 1) NOT NULL,
+    [Model]              NVARCHAR (MAX) NULL,
+    [Type]               NVARCHAR (MAX) NULL,
+    [ManufactureYear]    INT            NOT NULL,
+    [RegistrationNumber] NVARCHAR (MAX) NULL,
+    [Vendor]             NVARCHAR (MAX) NULL,
+    CONSTRAINT [PK_Cars] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+CREATE TABLE [dbo].[Users] (
+    [Id]            INT            IDENTITY (1, 1) NOT NULL,
+    [FirstName]     NVARCHAR (MAX) NULL,
+    [LastName]      NVARCHAR (MAX) NULL,
+    [BirthDate]     DATETIME2 (7)  NOT NULL,
+    [LicenseNumber] NVARCHAR (MAX) NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Orders] (
+    [Id]        INT            IDENTITY (1, 1) NOT NULL,
+    [UserId]    INT            NOT NULL,
+    [CarId]     INT            NOT NULL,
+    [BeginDate] DATETIME2 (7)  NOT NULL,
+    [EndDate]   DATETIME2 (7)  NOT NULL,
+    [Comment]   NVARCHAR (MAX) NULL,
+    CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Orders_Cars_CarId] FOREIGN KEY ([CarId]) REFERENCES [dbo].[Cars] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Orders_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([Id]) ON DELETE CASCADE
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Orders_CarId]
+    ON [dbo].[Orders]([CarId] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Orders_UserId]
+    ON [dbo].[Orders]([UserId] ASC);
+

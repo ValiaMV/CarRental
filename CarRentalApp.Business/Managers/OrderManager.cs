@@ -81,7 +81,7 @@ namespace CarRentalApp.Business.Managers
             if (name != null)
             {
                 var orders = from order in _context.Orders.Include(ord => ord.Car).Include(ord => ord.User)
-                             where order.User.FirstName == name
+                             where order.User.FirstName == name || order.User.LastName == name 
                              select order;
                 return _mapper.Map<IEnumerable<Order>>(await orders.ToListAsync());
             }
