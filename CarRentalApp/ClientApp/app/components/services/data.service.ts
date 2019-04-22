@@ -22,6 +22,9 @@ export class DataService {
     getFreeCars() {
         return this.http.get(this.urlCars + '/free');
     }
+    getFreeCarsEdit(id: number) {
+        return this.http.get(this.urlCars + '/free/' + id);
+    }
     getOrders() {
         return this.http.get(this.urlOrders);
     }

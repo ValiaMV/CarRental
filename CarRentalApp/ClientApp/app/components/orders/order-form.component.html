@@ -1,6 +1,6 @@
 ﻿<div class="form-group">
     <label>Car</label>
-    <select [(ngModel)]="order.carId" class="form-control" >
+    <select [(ngModel)]="order.carId" class="form-control">
         <option *ngFor="let car of cars" [value]="car.id">
             {{ car.registrationNumber }}
         </option>

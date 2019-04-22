@@ -10,5 +10,6 @@ namespace CarRentalApp.Business.Interfaces
     {
         Task<IEnumerable<Car>> ReadAll();
         Task<IEnumerable<Car>> ReadFree();
+        Task<IEnumerable<Car>> ReadFreeWithOrder(int id);
     }
 }

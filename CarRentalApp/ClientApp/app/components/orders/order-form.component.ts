@@ -11,14 +11,12 @@ import { DataService } from '../services/data.service';
 })
 export class OrderFormComponent implements OnInit {
     @Input() order: Order;
-    cars: Car[];
+    @Input() cars: Car[];
     users: User[];
 
     constructor(private dataService: DataService) { }
 
     ngOnInit() {
-        this.dataService.getFreeCars()
-            .subscribe((data: Car[]) => { this.cars = data; });
         this.dataService.getUsers()
             .subscribe((data: User[]) => { this.users = data; });
     }

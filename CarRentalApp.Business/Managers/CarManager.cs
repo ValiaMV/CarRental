@@ -39,5 +39,15 @@ namespace CarRentalApp.Business.Managers
             var cars = _mapper.Map<IEnumerable<Car>>(await freeCars.ToListAsync());
             return cars;
         }
+
+        public async Task<IEnumerable<Car>> ReadFreeWithOrder(int id)
+        {
+            var orderCars = from order in _context.Orders where order.Id != id select order.CarId;
+            var freeCars = from car in _context.Cars
+                           where !orderCars.Contains(car.Id)
+                           select car;
+            var cars = _mapper.Map<IEnumerable<Car>>(await freeCars.ToListAsync());
+            return cars;
+        }
     }
 }

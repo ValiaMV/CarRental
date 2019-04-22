@@ -37,5 +37,12 @@ namespace CarRentalApp.Controllers
             var cars = _mapper.Map<IEnumerable<CarViewModel>>(await _carManager.ReadFree());
             return cars;
         }
+        [Route("free/{id}")]
+        [HttpGet]
+        public async Task<IEnumerable<CarViewModel>> GetFreeCars(int id)
+        {
+            var cars = _mapper.Map<IEnumerable<CarViewModel>>(await _carManager.ReadFreeWithOrder(id));
+            return cars;
+        }
     }
 }
