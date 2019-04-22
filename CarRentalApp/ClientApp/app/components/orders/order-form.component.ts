@@ -17,7 +17,7 @@ export class OrderFormComponent implements OnInit {
     constructor(private dataService: DataService) { }
 
     ngOnInit() {
-        this.dataService.getCars()
+        this.dataService.getFreeCars()
             .subscribe((data: Car[]) => { this.cars = data; });
         this.dataService.getUsers()
             .subscribe((data: User[]) => { this.users = data; });

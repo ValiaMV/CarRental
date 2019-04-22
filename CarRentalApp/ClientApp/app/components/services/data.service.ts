@@ -19,7 +19,9 @@ export class DataService {
     getCars() {
         return this.http.get(this.urlCars);
     }
-
+    getFreeCars() {
+        return this.http.get(this.urlCars + '/free');
+    }
     getOrders() {
         return this.http.get(this.urlOrders);
     }

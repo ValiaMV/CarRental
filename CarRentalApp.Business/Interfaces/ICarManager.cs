@@ -9,5 +9,6 @@ namespace CarRentalApp.Business.Interfaces
     public interface ICarManager
     {
         Task<IEnumerable<Car>> ReadAll();
+        Task<IEnumerable<Car>> ReadFree();
     }
 }
